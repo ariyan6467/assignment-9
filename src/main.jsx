@@ -8,6 +8,8 @@ import App from "./Component/App.jsx";
 import Home from "./Layout/Home.jsx";
 import Hero from "./Component/Hero.jsx";
 import HomePlants from "./Component/PlantSection/HomePlants.jsx";
+import Login from "./Layout/Login.jsx";
+import Register from "./Layout/Register.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
         path: "", // nested route
         Component: HomePlants,
       },
+      {
+        path:"/login",
+        Component:Login
+      },
+      {
+        path:"/register",
+        Component:Register
+      }
     ],
   },
 ]);

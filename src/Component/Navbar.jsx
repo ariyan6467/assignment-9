@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router';
 
+
 const Navbar = () => {
     return (
         <header className="bg-white shadow-sm ">
@@ -28,8 +29,12 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-2">
             {/* logged out state UI example */}
             
-            <button className="px-3 py-2 rounded-md text-sm font-medium border hover:bg-gray-50">Login</button>
-            <button className="px-3 py-2 rounded-md text-sm font-medium bg-green-600 text-white hover:bg-green-700">Register</button>
+        <NavLink to="/login">
+                <button className="px-3 py-2 rounded-md text-sm font-medium border hover:bg-gray-50">Login</button>
+        </NavLink>
+          <NavLink to="/register">
+              <button className="px-3 py-2 rounded-md text-sm font-medium border hover:bg-green-700">Register</button>
+          </NavLink>
             <img src="https://tse1.explicit.bing.net/th/id/OIP.hGSCbXlcOjL_9mmzerqAbQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" className='w-[40px] mx-3' alt="" srcset="" />
           </div>
 

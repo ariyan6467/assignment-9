@@ -2,3 +2,7 @@
 @plugin "daisyui"{
   themes: ["light"];
 }
+
+a:active{
+  background-color: greenyellow;
+}
