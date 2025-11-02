@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { NavLink } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../auth/AuthProvider";
 
 const Login = () => {
     const {handleLogin,setUser,handleGoogleSignIn} = useContext(AuthContext);
+   
 
+     const location = useLocation();
+        console.log(location);
+   const navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
       const form = e.target;
@@ -16,6 +20,7 @@ const Login = () => {
       .then(res=>{
         console.log(res.user)
         setUser(res.user);
+        navigate(location?.state? location.state:"/")
       })
       .catch(error =>{
         console.error(error.massage);
@@ -24,7 +29,13 @@ const Login = () => {
 
   
     function handleSignInWithGoogle(){
-        handleGoogleSignIn();
+        handleGoogleSignIn()
+        .then((result) => {
+        setUser(result.user);
+        console.log("Signed in with Google:", result.user);
+          navigate(location?.state? location.state:"/")
+      })
+      .catch((error) => console.error("Google sign-in error:", error.message));
     }
   return (
     <div className="hero bg-base-200 min-h-screen">

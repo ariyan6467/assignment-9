@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../auth/AuthProvider";
 
@@ -13,7 +13,10 @@ const Register = () => {
     const img = form.img.value;
     const email = form.email.value;
     const password = form.password.value;
-
+  
+     const location = useLocation();
+        console.log(location);
+   
     // Register user
     handleRegister(email, password)
       .then((result) => {
@@ -30,7 +33,7 @@ const Register = () => {
             // Merge profile data with user state
             setUser({ ...registeredUser, ...profileData });
             console.log("User registered & profile updated:", { ...registeredUser, ...profileData });
-            navigate("/"); // redirect after successful registration
+            navigate(location?.state? location.state:"/")// redirect after successful registration
           })
           .catch((error) => console.error("Profile update error:", error.message));
       })
@@ -43,7 +46,7 @@ const Register = () => {
       .then((result) => {
         setUser(result.user);
         console.log("Signed in with Google:", result.user);
-        navigate("/");
+     navigate(location?.state? location.state:"/")
       })
       .catch((error) => console.error("Google sign-in error:", error.message));
   };

@@ -12,6 +12,9 @@ import Login from "./Layout/Login.jsx";
 import Register from "./Layout/Register.jsx";
 import AuthProvider from "./auth/AuthProvider.jsx";
 import Profile from "./Layout/Profile.jsx";
+import nav2 from "./nav2.jsx";
+import Plants from "./Layout/Plants.jsx";
+import PrivateRoutes from "./auth/PrivateRoutes.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,10 +39,19 @@ const router = createBrowserRouter([
       },
       {
         path:"/profile",
-        Component:Profile,
+       element:<PrivateRoutes>
+        <Profile></Profile>
+       </PrivateRoutes>
+      },
+      {
+        path:"/plants",
+       element:<PrivateRoutes>
+     <Plants></Plants>
+       </PrivateRoutes>,
+        loader:()=> fetch("/public/PlantsData.json"),
       }
     ],
-  },
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
