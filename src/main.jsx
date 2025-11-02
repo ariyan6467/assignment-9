@@ -10,6 +10,8 @@ import Hero from "./Component/Hero.jsx";
 import HomePlants from "./Component/PlantSection/HomePlants.jsx";
 import Login from "./Layout/Login.jsx";
 import Register from "./Layout/Register.jsx";
+import AuthProvider from "./auth/AuthProvider.jsx";
+import Profile from "./Layout/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
       {
         path:"/register",
         Component:Register
+      },
+      {
+        path:"/profile",
+        Component:Profile,
       }
     ],
   },
@@ -38,6 +44,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+  <AuthProvider>
+ <RouterProvider router={router} />
+  </AuthProvider>
+    
+ 
   </StrictMode>
 );

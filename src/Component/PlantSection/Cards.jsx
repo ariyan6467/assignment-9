@@ -1,7 +1,7 @@
 import React from "react";
 
 const Cards = ({ plant }) => {
-    console.log(plant);
+  
     
   return (
      <div className=" rounded-xl bg-white shadow hover:shadow-lg transition p-3">

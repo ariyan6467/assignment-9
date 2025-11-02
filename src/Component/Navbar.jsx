@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router';
+import { AuthContext } from '../auth/AuthProvider';
 
 
 const Navbar = () => {
+  const {user} = useContext(AuthContext);
+  console.log(user)
     return (
         <header className="bg-white shadow-sm ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,7 +38,7 @@ const Navbar = () => {
           <NavLink to="/register">
               <button className="px-3 py-2 rounded-md text-sm font-medium border hover:bg-green-700">Register</button>
           </NavLink>
-            <img src="https://tse1.explicit.bing.net/th/id/OIP.hGSCbXlcOjL_9mmzerqAbQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" className='w-[40px] mx-3' alt="" srcset="" />
+            <img src={user?.photoURL? user.photoURL:"https://tse1.explicit.bing.net/th/id/OIP.hGSCbXlcOjL_9mmzerqAbQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"} className='w-[50px] mx-3 rounded-full' alt="" srcset="" />
           </div>
 
           {/* mobile menu icon */}
