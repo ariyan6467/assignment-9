@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import HeroImg from "../assets/hero-plants.jpg";
+import { NavLink } from "react-router";
 
 const Banner = () => {
   return (
@@ -37,7 +38,8 @@ const Banner = () => {
         </motion.p>
 
         {/* Button */}
-        <motion.button
+       <NavLink to="/plants">
+         <motion.button
           className="px-6 py-3 bg-green-600 text-white rounded-md font-semibold hover:bg-green-700 transition"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -47,6 +49,7 @@ const Banner = () => {
         >
           Explore Plants
         </motion.button>
+       </NavLink>
       </div>
     </section>
   );

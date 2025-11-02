@@ -1,10 +1,14 @@
 import { NavLink, useLocation, useNavigate } from "react-router";
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../auth/AuthProvider";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { handleRegister, setUser, handleGoogleSignIn, handleUpdateProfile } = useContext(AuthContext);
+     const location = useLocation();
+  const { handleRegister, setUser, handleGoogleSignIn, handleUpdateProfile,handleForgotPassword } = useContext(AuthContext);
+
+   const[error,setError]=useState("");
+     const[suck,setSuck]=useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,13 +17,21 @@ const Register = () => {
     const img = form.img.value;
     const email = form.email.value;
     const password = form.password.value;
+    
+    const regex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    if(!regex.test(password)){
+   setError("Password must have uppercase, lowercase and at least 6 characters long");
+   setSuck("");
+   return;
+}
   
-     const location = useLocation();
         console.log(location);
    
     // Register user
     handleRegister(email, password)
       .then((result) => {
+          setSuck("Register Successful")
+          setError("")
         const registeredUser = result.user;
 
         // Update profile
@@ -35,9 +47,21 @@ const Register = () => {
             console.log("User registered & profile updated:", { ...registeredUser, ...profileData });
             navigate(location?.state? location.state:"/")// redirect after successful registration
           })
-          .catch((error) => console.error("Profile update error:", error.message));
+          .catch((error) =>
+              {
+                setError(error.message)
+            setSuck("")
+            console.error("Profile update error:", error.message)
+              });
       })
-      .catch((error) => console.error("Registration error:", error.message));
+      .catch((error) =>
+         {
+           setError(error.message)
+           setSuck("")
+        console.error("Registration error:", error.message)
+         });
+
+    
   };
 
   // Google Sign-In
@@ -50,6 +74,21 @@ const Register = () => {
       })
       .catch((error) => console.error("Google sign-in error:", error.message));
   };
+
+    const emailRef = useRef();
+     function forgotPassword(){
+    const email = emailRef.current.value;
+    handleForgotPassword(email)
+    .then(()=>{
+      
+      alert("check email")
+    })
+    .catch(error=>{
+      console.error(error.message);
+      alert(error.message)
+    })
+    }
+
 
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -79,6 +118,7 @@ const Register = () => {
 
                 <label className="label">Email</label>
                 <input
+                ref={emailRef}
                   name="email"
                   type="email"
                   className="input rounded-xl bg-gray-400"
@@ -96,7 +136,9 @@ const Register = () => {
                 />
 
                 <div>
-                  <a className="link link-hover">Forgot password?</a>
+                  <a 
+                  onClick={forgotPassword}
+                  className="link link-hover">Forgot password?</a>
                 </div>
 
                 <button type="submit" className="btn btn-neutral mt-4 border-0 bg-gray-500">
@@ -119,6 +161,8 @@ const Register = () => {
                 </p>
               </fieldset>
             </form>
+             {error && <p className="text-red-500">{error}</p>}
+                        {suck && <p className="text-green-600">{suck}</p>}
           </div>
         </div>
       </div>

@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { NavLink } from "react-router";
+import { AuthContext } from "../../auth/AuthProvider";
 
 const Cards = ({ plant }) => {
-  
+  const{details,setDetails} = useContext(AuthContext);
+ 
+
+  function handleDetails(){
+    setDetails(plant);
+  }
     
   return (
      <div className=" rounded-xl bg-white shadow hover:shadow-lg transition p-3">
@@ -17,9 +24,14 @@ const Cards = ({ plant }) => {
 
       <p className="text-yellow-600 font-medium">Rating: ⭐ {plant.rating}</p>
 
-      <button className="mt-4 w-full py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition">
+    <NavLink 
+    to="/details"
+    onClick={handleDetails}
+    >
+        <button className="mt-4 w-full py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition">
         View Details
       </button>
+    </NavLink>
     </div>
   );
 };

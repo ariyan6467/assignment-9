@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../firebase.config";
 
@@ -17,6 +18,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const[loading,SetLoading] =  useState(true);
+  const [details,setDetails] = useState([]);
 
   // Register with email & password
   const handleRegister = (email, password) => {
@@ -26,7 +28,7 @@ const AuthProvider = ({ children }) => {
 
   // Update profile (displayName + photoURL)
   const handleUpdateProfile = (user, profileData) => {
-     SetLoading(true);
+    
     return updateProfile(user, profileData); // returns a promise
   };
 
@@ -42,6 +44,10 @@ const AuthProvider = ({ children }) => {
 
   function handleSignOut() {
     return signOut(auth);
+  }
+
+  function handleForgotPassword(email){
+   return sendPasswordResetEmail(auth,email);
   }
 
   useEffect(() => {
@@ -60,7 +66,9 @@ const AuthProvider = ({ children }) => {
     handleUpdateProfile,
     handleGoogleSignIn,
     handleSignOut,
-    loading,SetLoading
+    loading,SetLoading,
+   details,setDetails,
+   handleForgotPassword
   };
 
   return (

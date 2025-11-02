@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../auth/AuthProvider";
-
+import { useRef } from "react";
+import { p } from "framer-motion/client";
 const Login = () => {
-    const {handleLogin,setUser,handleGoogleSignIn} = useContext(AuthContext);
+    const {handleLogin,setUser,handleGoogleSignIn,handleForgotPassword} = useContext(AuthContext);
+    const[error,setError]=useState("");
+    const[suck,setSuck]=useState("");
    
 
      const location = useLocation();
-        console.log(location);
+        console.log(handleForgotPassword);
    const navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
@@ -18,12 +21,17 @@ const Login = () => {
       console.log(form,email,password,handleLogin);
       handleLogin(email,password)
       .then(res=>{
+    setSuck("LOgin Successful")
+       setError("")
         console.log(res.user)
         setUser(res.user);
+
         navigate(location?.state? location.state:"/")
       })
       .catch(error =>{
-        console.error(error.massage);
+        console.error(error.mssage);
+        setError(error.message);
+        setSuck("")
       })
   }
 
@@ -37,6 +45,24 @@ const Login = () => {
       })
       .catch((error) => console.error("Google sign-in error:", error.message));
     }
+
+       const emailRef = useRef();
+
+       
+    function forgotPassword(){
+    const email = emailRef.current.value;
+    handleForgotPassword(email)
+    .then(()=>{
+      
+      alert("check email")
+    })
+    .catch(error=>{
+      console.error(error.message);
+      alert(error.message);
+
+    })
+    }
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -46,8 +72,9 @@ const Login = () => {
             <h1 className="text-5xl font-bold">Login now!</h1>
             <form onSubmit={handleSubmit}>
               <fieldset className="fieldset">
-                <label className="label">Email</label>
+                <label    className="label">Email</label>
                 <input
+                 ref={emailRef}
                   name="email"
                   type="email"
                   className="input rounded-xl"
@@ -61,7 +88,9 @@ const Login = () => {
                   placeholder="Password"
                 />
                 <div>
-                  <a className="link link-hover">Forgot password?</a>
+                  <a 
+                  onClick={forgotPassword}
+                  className="link link-hover ">Forgot password?</a>
                 </div>
                 <button
                   type="submit"
@@ -109,6 +138,8 @@ const Login = () => {
                 </p>
               </fieldset>
             </form>
+            {error && <p className="text-red-500">{error}</p>}
+            {suck && <p className="text-green-600">{suck}</p>}
           </div>
         </div>
       </div>

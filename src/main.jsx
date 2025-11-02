@@ -15,6 +15,7 @@ import Profile from "./Layout/Profile.jsx";
 import nav2 from "./nav2.jsx";
 import Plants from "./Layout/Plants.jsx";
 import PrivateRoutes from "./auth/PrivateRoutes.jsx";
+import Details from "./Layout/Details.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,12 @@ const router = createBrowserRouter([
      <Plants></Plants>
        </PrivateRoutes>,
         loader:()=> fetch("/public/PlantsData.json"),
+      },
+      {
+        path:"/details",
+      element:<PrivateRoutes>
+          <Details></Details>
+        </PrivateRoutes>
       }
     ],
   }
