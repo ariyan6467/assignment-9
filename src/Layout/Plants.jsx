@@ -5,7 +5,7 @@ import { div } from 'framer-motion/client';
 
 const Plants = () => {
     const plants = useLoaderData();
-    console.log(plants);
+    // console.log(plants);
    
     return (
       <div className='text-center'>

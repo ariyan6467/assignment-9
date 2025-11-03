@@ -11,25 +11,25 @@ const Login = () => {
    
 
      const location = useLocation();
-        console.log(handleForgotPassword);
+        // console.log(handleForgotPassword);
    const navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
       const form = e.target;
       const email = form.email.value;
       const password = form.password.value;
-      console.log(form,email,password,handleLogin);
+      // console.log(form,email,password,handleLogin);
       handleLogin(email,password)
       .then(res=>{
     setSuck("LOgin Successful")
        setError("")
-        console.log(res.user)
+        // console.log(res.user)
         setUser(res.user);
 
         navigate(location?.state? location.state:"/")
       })
       .catch(error =>{
-        console.error(error.mssage);
+        // console.error(error.mssage);
         setError(error.message);
         setSuck("")
       })
@@ -40,7 +40,7 @@ const Login = () => {
         handleGoogleSignIn()
         .then((result) => {
         setUser(result.user);
-        console.log("Signed in with Google:", result.user);
+        // console.log("Signed in with Google:", result.user);
           navigate(location?.state? location.state:"/")
       })
       .catch((error) => console.error("Google sign-in error:", error.message));
@@ -57,7 +57,7 @@ const Login = () => {
       alert("check email")
     })
     .catch(error=>{
-      console.error(error.message);
+      // console.error(error.message);
       alert(error.message);
 
     })

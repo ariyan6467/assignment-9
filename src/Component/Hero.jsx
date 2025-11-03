@@ -5,7 +5,7 @@ import Careplants from './Careplants';
 import Experts from './Experts';
 import Year from './Year';
 
-const PlantsPromises = fetch("/public/PlantsData.json").then(res => res.json());
+const PlantsPromises = fetch("PlantsData.json").then(res => res.json());
 
 const Hero = () => {
 

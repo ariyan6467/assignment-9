@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const Details = () => {
   const { details } = useContext(AuthContext);
-  console.log(details);
+  // console.log(details);
   const image = details.image;
   const name = details.plantName;
   const description = details.description;
@@ -17,7 +17,7 @@ const Details = () => {
  const notify = () => toast("Consultaion is Booked");
   function handleBookNOw(e) {
     e.preventDefault();
-    console.log("masud");
+
     e.target.reset();
   
   }

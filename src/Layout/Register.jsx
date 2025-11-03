@@ -25,7 +25,7 @@ const Register = () => {
    return;
 }
   
-        console.log(location);
+        // console.log(location);
    
     // Register user
     handleRegister(email, password)
@@ -44,21 +44,21 @@ const Register = () => {
           .then(() => {
             // Merge profile data with user state
             setUser({ ...registeredUser, ...profileData });
-            console.log("User registered & profile updated:", { ...registeredUser, ...profileData });
+            // console.log("User registered & profile updated:", { ...registeredUser, ...profileData });
             navigate(location?.state? location.state:"/")// redirect after successful registration
           })
           .catch((error) =>
               {
                 setError(error.message)
             setSuck("")
-            console.error("Profile update error:", error.message)
+            // console.error("Profile update error:", error.message)
               });
       })
       .catch((error) =>
          {
            setError(error.message)
            setSuck("")
-        console.error("Registration error:", error.message)
+        // console.error("Registration error:", error.message)
          });
 
     
@@ -69,7 +69,7 @@ const Register = () => {
     handleGoogleSignIn()
       .then((result) => {
         setUser(result.user);
-        console.log("Signed in with Google:", result.user);
+        // console.log("Signed in with Google:", result.user);
      navigate(location?.state? location.state:"/")
       })
       .catch((error) => console.error("Google sign-in error:", error.message));
@@ -84,7 +84,7 @@ const Register = () => {
       alert("check email")
     })
     .catch(error=>{
-      console.error(error.message);
+      // console.error(error.message);
       alert(error.message)
     })
     }
