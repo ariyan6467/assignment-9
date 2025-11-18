@@ -1,16 +1,60 @@
-# React + Vite
+# Assignment 9 – React + Vite Starter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This project is a React + Vite starter that ships with hot module replacement, minimal stateful UI, and sensible defaults for quickly building modern front-end experiences. It is configured to integrate with Tailwind CSS and Firebase hosting so you can style components rapidly and deploy to the web without extra setup.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img width="1917" height="957" alt="Screenshot 2025-11-19 045630" src="https://github.com/user-attachments/assets/3119f40e-5427-449b-ad6d-aefb0dcf1495" />
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Main Technologies
+- React 19 with JSX-driven components
+- Vite 7 for rapid builds and hot module replacement
+- Tailwind CSS 4 (with daisyUI) for utility-first styling
+- Firebase Hosting configuration for deployment
+- React Router 7 for client-side routing scaffolding
+- Animation and icon tooling via Framer Motion and Lucide React
 
-## Expanding the ESLint configuration
+- 
+## Key Features
+- Interactive counter component demonstrating React state updates.
+- Hot reload/HMR support for fast feedback during development.
+- Preconfigured Tailwind CSS pipeline for styling.
+- Firebase hosting setup with SPA-friendly rewrites.
+- Routing, animation, toast notifications, and icon libraries included for rapid feature development.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Dependencies
+Runtime dependencies:
+- @tailwindcss/vite
+- firebase
+- framer-motion
+- lucide-react
+- react, react-dom
+- react-hot-toast, react-toastify
+- react-icons
+- react-router
+- tailwindcss
+
+- 
+Dev dependencies:
+- @eslint/js, eslint, eslint-plugin-react-hooks, eslint-plugin-react-refresh
+- @types/react, @types/react-dom, globals
+- @vitejs/plugin-react, vite
+- daisyui
+
+See `package.json` for exact version pins.
+
+## Run Locally
+1. Ensure Node.js 18+ and npm are installed.
+2. Install packages: `npm install`.
+3. Start the dev server: `npm run dev` and open the printed localhost URL (default http://localhost:5173).
+4. Build for production: `npm run build`.
+5. Preview the production build locally: `npm run preview`.
+
+## Live and Relevant Links
+- Netlify Live Link : [URL:https://peaceful-eclair-c88b62.netlify.app/]
+- Live demo: not deployed yet; configure Firebase Hosting and run `firebase deploy` to publish.
+- Project template reference: [Vite React Docs](https://vite.dev/guide/)
+- React documentation: [react.dev](https://react.dev/)
+- Firebase hosting overview: [firebase.google.com/docs/hosting](https://firebase.google.com/docs/hosting)
